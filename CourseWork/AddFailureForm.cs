@@ -41,7 +41,7 @@ namespace CourseWork
                 return;
             }
 
-            var date = datePickerMaintenance.Value.Date;
+            var date = datePickerFailure.Value.Date;
             var eq = textBoxEquipment.Text.Trim();
             var sev = dropdownSeverity.SelectedItem.ToString();
 

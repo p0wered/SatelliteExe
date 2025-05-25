@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,8 +35,8 @@ namespace CourseWork
             }
             else if (tabControlMain.SelectedIndex == 2)
             {
-                InitOperationsTab();
-                LoadOperations();
+                InitHQTab();
+                LoadHQs();
             }
         }
 
@@ -173,22 +174,37 @@ namespace CourseWork
             }
         }
 
-        // Вкладка "Операции"
-        private void InitOperationsTab()
+        // Вкладка "Штабы"
+        private void InitHQTab()
         {
+            dataGridHQ.SelectionChanged += (s, e) => LoadOperationsByHQ();
+            dataGridHQ.AutoGenerateColumns = true;
             dataGridOperations.SelectionChanged += (s, e) => LoadOperationResources();
             dataGridOperations.AutoGenerateColumns = true;
             dataGridOpResources.AutoGenerateColumns = true;
+            LoadHQs();
         }
 
-        private void LoadOperations()
+        private void LoadHQs()
         {
-            dataGridOperations.DataSource = ExecuteProc("usp_GetOperations");
+            dataGridHQ.DataSource = ExecuteProc("usp_GetHQs");
+        }
+
+        private void LoadOperationsByHQ()
+        {
+            if (dataGridHQ.CurrentRow == null) return;
+
+            string hqId = dataGridHQ.CurrentRow.Cells["Идентификатор штаба"].Value.ToString();
+
+            dataGridOperations.DataSource = ExecuteProc(
+                "usp_GetOperationsByHQ",
+                new SqlParameter("@HQId", hqId));
         }
 
         private void LoadOperationResources()
         {
             if (dataGridOperations.CurrentRow == null) return;
+
             int opId = Convert.ToInt32(
                 dataGridOperations.CurrentRow.Cells["Номер операции"].Value);
 
@@ -234,6 +250,117 @@ namespace CourseWork
                 da.Fill(dt);
             }
             return dt;
+        }
+
+        private void btnEditSatellite_Click(object sender, EventArgs e)
+        {
+            if (dataGridSatellites.CurrentRow == null) return;
+
+            int satId = Convert.ToInt32(dataGridSatellites.CurrentRow.Cells[0].Value);
+
+            using (var form = new EditSatelliteForm(connString, satId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatellites();
+                }
+            }
+        }
+
+        private void btnEditMaintenance_Click(object sender, EventArgs e)
+        {
+            if (dataGridMaintenance.CurrentRow == null)
+                return;
+
+            int mtId = Convert.ToInt32(dataGridMaintenance.CurrentRow
+                         .Cells["Номер ТО"].Value);
+
+            using (var form = new EditMaintenanceForm(connString, mtId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatelliteDetails();
+                }
+            }
+        }
+
+        private void btnEditFailure_Click(object sender, EventArgs e)
+        {
+            if (dataGridFailures.CurrentRow == null)
+            {
+                MessageBox.Show("Сначала выберите сбой.", "Ошибка",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int failureId = Convert.ToInt32(
+                dataGridFailures.CurrentRow.Cells["Номер_сбоя"].Value);
+
+            using (var form = new EditFailureForm(connString, failureId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatelliteDetails();
+                }
+            }
+        }
+
+        private void btnDeleteMaintenance_Click(object sender, EventArgs e)
+        {
+            if (dataGridMaintenance.CurrentRow == null)
+                return;
+
+            int maintenanceId = Convert.ToInt32(
+                dataGridMaintenance.CurrentRow.Cells["Номер ТО"].Value);
+
+            if (MessageBox.Show(
+                    $"Удалить техобслуживание №{maintenanceId}?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            using (var conn = new SqlConnection(connString))
+            using (var cmd = new SqlCommand(
+                "DELETE FROM Технические_обслуживания WHERE Номер_ТО = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", maintenanceId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            LoadSatelliteDetails();
+        }
+
+        private void btnDeleteFailure_Click(object sender, EventArgs e)
+        {
+            if (dataGridFailures.CurrentRow == null)
+                return;
+
+            int failureId = Convert.ToInt32(
+                dataGridFailures.CurrentRow.Cells["Номер_сбоя"].Value);
+
+            if (MessageBox.Show(
+                    $"Удалить сбой №{failureId}?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            using (var conn = new SqlConnection(connString))
+            using (var cmd = new SqlCommand(
+                "DELETE FROM Сбои WHERE Номер_сбоя = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", failureId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            LoadSatelliteDetails();
         }
     }
 }

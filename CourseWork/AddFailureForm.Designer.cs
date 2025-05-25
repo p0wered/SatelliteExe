@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.datePickerMaintenance = new System.Windows.Forms.DateTimePicker();
+            this.datePickerFailure = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxEquipment = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,14 +48,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Дата сбоя";
             // 
-            // datePickerMaintenance
+            // datePickerFailure
             // 
-            this.datePickerMaintenance.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.datePickerMaintenance.Location = new System.Drawing.Point(22, 43);
-            this.datePickerMaintenance.MinDate = new System.DateTime(2025, 5, 25, 0, 0, 0, 0);
-            this.datePickerMaintenance.Name = "datePickerMaintenance";
-            this.datePickerMaintenance.Size = new System.Drawing.Size(369, 36);
-            this.datePickerMaintenance.TabIndex = 1;
+            this.datePickerFailure.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.datePickerFailure.Location = new System.Drawing.Point(22, 43);
+            this.datePickerFailure.MaxDate = new System.DateTime(2025, 5, 25, 0, 0, 0, 0);
+            this.datePickerFailure.MinDate = new System.DateTime(2000, 5, 25, 0, 0, 0, 0);
+            this.datePickerFailure.Name = "datePickerFailure";
+            this.datePickerFailure.Size = new System.Drawing.Size(369, 36);
+            this.datePickerFailure.TabIndex = 1;
+            this.datePickerFailure.Value = new System.DateTime(2025, 5, 25, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -127,7 +129,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxEquipment);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.datePickerMaintenance);
+            this.Controls.Add(this.datePickerFailure);
             this.Controls.Add(this.label1);
             this.Name = "AddFailureForm";
             this.Text = "Добавление сбоя";
@@ -139,7 +141,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker datePickerMaintenance;
+        private System.Windows.Forms.DateTimePicker datePickerFailure;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxEquipment;
         private System.Windows.Forms.Label label3;
