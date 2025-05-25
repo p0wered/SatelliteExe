@@ -59,6 +59,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFailureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFailureForm.Designer.cs">
+      <DependentUpon>AddFailureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddMaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMaintenanceForm.Designer.cs">
+      <DependentUpon>AddMaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSatelliteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSatelliteForm.Designer.cs">
+      <DependentUpon>AddSatelliteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +101,15 @@
     <Compile Include="Спутники.cs" />
     <Compile Include="Технические_обслуживания.cs" />
     <Compile Include="Штабы_управления.cs" />
+    <EmbeddedResource Include="AddFailureForm.resx">
+      <DependentUpon>AddFailureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddMaintenanceForm.resx">
+      <DependentUpon>AddMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSatelliteForm.resx">
+      <DependentUpon>AddSatelliteForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>

@@ -24,6 +24,7 @@ namespace CourseWork
             tabControlMain.SelectedIndexChanged += TabControlMain_SelectedIndexChanged;
         }
 
+        // Переключение вкладок
         private void TabControlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControlMain.SelectedIndex == 1)
@@ -31,8 +32,14 @@ namespace CourseWork
                 InitSatelliteTab();
                 LoadSatellites();
             }
+            else if (tabControlMain.SelectedIndex == 2)
+            {
+                InitOperationsTab();
+                LoadOperations();
+            }
         }
 
+        // Вкладка "Обзор"
         private void LoadDashboardTab()
         {
             labelTotalSatellites.Text = db.Спутники.Count().ToString();
@@ -62,34 +69,16 @@ namespace CourseWork
 
         private void InitSatelliteTab()
         {
-            btnAddSatellite.Click += (s, e) => { /* открыть вашу форму добавления */ };
-            btnEditSatellite.Click += (s, e) => EditSelectedSatellite();
-            btnDeleteSatellite.Click += (s, e) => DeleteSelectedSatellite();
-
             dataGridSatellites.SelectionChanged += (s, e) => LoadSatelliteDetails();
-            dataGridSatellites.CellFormatting += DataGridSatellites_CellFormatting;
+            dataGridSatellites.CellFormatting += yearFormatting;
+            dataGridMaintenance.CellFormatting += yearFormatting;
 
             dataGridSatellites.AutoGenerateColumns = true;
             dataGridMaintenance.AutoGenerateColumns = true;
             dataGridFailures.AutoGenerateColumns = true;
         }
 
-        private void DataGridSatellites_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataGridSatellites.Columns[e.ColumnIndex].DataPropertyName == "Срок службы"
-                && e.Value != null && int.TryParse(e.Value.ToString(), out int years))
-            {
-                string suffix;
-                if (years % 10 == 1 && years % 100 != 11) suffix = "год";
-                else if (years % 10 >= 2 && years % 10 <= 4
-                         && (years % 100 < 10 || years % 100 >= 20)) suffix = "года";
-                else suffix = "лет";
-
-                e.Value = $"{years} {suffix}";
-                e.FormattingApplied = true;
-            }
-        }
-
+        // Вкладка "Спутники"
         private void LoadSatellites()
         {
             dataGridSatellites.DataSource = ExecuteProc("usp_GetSatellites");
@@ -110,22 +99,12 @@ namespace CourseWork
                 new SqlParameter("@SatelliteId", satId));
         }
 
-        private void EditSelectedSatellite()
-        {
-            // if (dataGridSatellites.CurrentRow == null) return;
-            // int satId = Convert.ToInt32(dataGridSatellites.CurrentRow
-            //                             .Cells["Идентификатор_спутника"].Value);
-            // using (var form = new SatelliteForm(satId))
-            //    if (form.ShowDialog() == DialogResult.OK)
-            //        LoadSatellites();
-        }
-
-        private void DeleteSelectedSatellite()
+        private void btnDeleteSatellite_Click(object sender, EventArgs e)
         {
             if (dataGridSatellites.CurrentRow == null) return;
             int satId = Convert.ToInt32(dataGridSatellites.CurrentRow.Cells[0].Value);
 
-            if (MessageBox.Show("Удалить спутник и все связанные с ним записи?",
+            if (MessageBox.Show("Удалить спутник #" + satId + " и все связанные с ним записи?",
                 "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
 
@@ -140,6 +119,106 @@ namespace CourseWork
             }
 
             LoadSatellites();
+        }
+
+        private void btnAddSatellite_Click(object sender, EventArgs e)
+        {
+            using (var form = new AddSatelliteForm(connString))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatellites();
+                }
+            }
+        }
+
+        private void btnAddFailure_Click(object sender, EventArgs e)
+        {
+            if (dataGridSatellites.CurrentRow == null)
+            {
+                MessageBox.Show("Выберите сначала спутник.",
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int satId = Convert.ToInt32(
+                dataGridSatellites.CurrentRow.Cells[0].Value);
+
+            using (var form = new AddFailureForm(connString, satId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatelliteDetails();
+                }
+            }
+        }
+
+        private void btnAddMaintenance_Click(object sender, EventArgs e)
+        {
+            if (dataGridSatellites.CurrentRow == null)
+            {
+                MessageBox.Show("Сначала выберите спутник.",
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int satId = Convert.ToInt32(dataGridSatellites.CurrentRow.Cells[0].Value);
+
+            using (var form = new AddMaintenanceForm(connString, satId))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadSatelliteDetails();
+                }
+            }
+        }
+
+        // Вкладка "Операции"
+        private void InitOperationsTab()
+        {
+            dataGridOperations.SelectionChanged += (s, e) => LoadOperationResources();
+            dataGridOperations.AutoGenerateColumns = true;
+            dataGridOpResources.AutoGenerateColumns = true;
+        }
+
+        private void LoadOperations()
+        {
+            dataGridOperations.DataSource = ExecuteProc("usp_GetOperations");
+        }
+
+        private void LoadOperationResources()
+        {
+            if (dataGridOperations.CurrentRow == null) return;
+            int opId = Convert.ToInt32(
+                dataGridOperations.CurrentRow.Cells["Номер операции"].Value);
+
+            dataGridOpResources.DataSource = ExecuteProc(
+                "usp_GetResourcesByOperation",
+                new SqlParameter("@OperationId", opId));
+        }
+
+        // Утилиты
+        private void yearFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var grid = (DataGridView)sender;
+            var col = grid.Columns[e.ColumnIndex];
+
+            if ((col.Name == "Срок службы" || col.Name == "Стаж бригады")
+                && e.Value != null
+                && int.TryParse(e.Value.ToString(), out int years))
+            {
+                string suffix;
+                if (years % 10 == 1 && years % 100 != 11)
+                    suffix = "год";
+                else if (years % 10 >= 2 && years % 10 <= 4
+                         && (years % 100 < 10 || years % 100 >= 20))
+                    suffix = "года";
+                else
+                    suffix = "лет";
+
+                e.Value = $"{years} {suffix}";
+                e.FormattingApplied = true;
+            }
         }
 
         private DataTable ExecuteProc(string procName, params SqlParameter[] parameters)
