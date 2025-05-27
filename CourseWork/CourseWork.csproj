@@ -59,11 +59,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddBrigadeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBrigadeForm.Designer.cs">
+      <DependentUpon>AddBrigadeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddClientCompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddClientCompanyForm.Designer.cs">
+      <DependentUpon>AddClientCompanyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddFailureForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddFailureForm.Designer.cs">
       <DependentUpon>AddFailureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddGroundStationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGroundStationForm.Designer.cs">
+      <DependentUpon>AddGroundStationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddHQForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddHQForm.Designer.cs">
+      <DependentUpon>AddHQForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddMaintenanceForm.cs">
       <SubType>Form</SubType>
@@ -71,11 +95,41 @@
     <Compile Include="AddMaintenanceForm.Designer.cs">
       <DependentUpon>AddMaintenanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOperationForm.Designer.cs">
+      <DependentUpon>AddOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOpResourcesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOpResourcesForm.Designer.cs">
+      <DependentUpon>AddOpResourcesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddOrbitsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOrbitsForm.Designer.cs">
+      <DependentUpon>AddOrbitsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddResourcesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddResourcesForm.Designer.cs">
+      <DependentUpon>AddResourcesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddSatelliteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddSatelliteForm.Designer.cs">
       <DependentUpon>AddSatelliteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSpaceCompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSpaceCompanyForm.Designer.cs">
+      <DependentUpon>AddSpaceCompanyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditFailureForm.cs">
       <SubType>Form</SubType>
@@ -83,11 +137,29 @@
     <Compile Include="EditFailureForm.Designer.cs">
       <DependentUpon>EditFailureForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditHQForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditHQForm.Designer.cs">
+      <DependentUpon>EditHQForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditMaintenanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditMaintenanceForm.Designer.cs">
       <DependentUpon>EditMaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOperationForm.Designer.cs">
+      <DependentUpon>EditOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditOpResourcesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOpResourcesForm.Designer.cs">
+      <DependentUpon>EditOpResourcesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditSatelliteForm.cs">
       <SubType>Form</SubType>
@@ -119,20 +191,56 @@
     <Compile Include="Спутники.cs" />
     <Compile Include="Технические_обслуживания.cs" />
     <Compile Include="Штабы_управления.cs" />
+    <EmbeddedResource Include="AddBrigadeForm.resx">
+      <DependentUpon>AddBrigadeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddClientCompanyForm.resx">
+      <DependentUpon>AddClientCompanyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddFailureForm.resx">
       <DependentUpon>AddFailureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddGroundStationForm.resx">
+      <DependentUpon>AddGroundStationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddHQForm.resx">
+      <DependentUpon>AddHQForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddMaintenanceForm.resx">
       <DependentUpon>AddMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddOperationForm.resx">
+      <DependentUpon>AddOperationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOpResourcesForm.resx">
+      <DependentUpon>AddOpResourcesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddOrbitsForm.resx">
+      <DependentUpon>AddOrbitsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddResourcesForm.resx">
+      <DependentUpon>AddResourcesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddSatelliteForm.resx">
       <DependentUpon>AddSatelliteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSpaceCompanyForm.resx">
+      <DependentUpon>AddSpaceCompanyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditFailureForm.resx">
       <DependentUpon>EditFailureForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditHQForm.resx">
+      <DependentUpon>EditHQForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditMaintenanceForm.resx">
       <DependentUpon>EditMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOperationForm.resx">
+      <DependentUpon>EditOperationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOpResourcesForm.resx">
+      <DependentUpon>EditOpResourcesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditSatelliteForm.resx">
       <DependentUpon>EditSatelliteForm.cs</DependentUpon>
