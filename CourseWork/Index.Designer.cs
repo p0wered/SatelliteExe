@@ -73,10 +73,14 @@ namespace CourseWork
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dataGridDynamic = new System.Windows.Forms.DataGridView();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.dropdownOtherTables = new System.Windows.Forms.ToolStripComboBox();
-            this.btnAddDynamic = new System.Windows.Forms.ToolStripButton();
-            this.btnEditDynamic = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteDynamic = new System.Windows.Forms.ToolStripButton();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.dropdownReportType = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.dataGridReport = new System.Windows.Forms.DataGridView();
             this.tabControlMain.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -107,6 +111,9 @@ namespace CourseWork
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDynamic)).BeginInit();
             this.toolStrip3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.toolStrip4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -114,13 +121,14 @@ namespace CourseWork
             this.tabControlMain.Controls.Add(this.tabPage2);
             this.tabControlMain.Controls.Add(this.tabPage3);
             this.tabControlMain.Controls.Add(this.tabPage4);
+            this.tabControlMain.Controls.Add(this.tabPage1);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.Padding = new System.Drawing.Point(26, 6);
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1599, 654);
+            this.tabControlMain.Size = new System.Drawing.Size(1152, 655);
             this.tabControlMain.TabIndex = 0;
             // 
             // tabPage2
@@ -130,7 +138,7 @@ namespace CourseWork
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1591, 610);
+            this.tabPage2.Size = new System.Drawing.Size(1144, 611);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Спутники";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -148,8 +156,8 @@ namespace CourseWork
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1585, 550);
-            this.splitContainer2.SplitterDistance = 788;
+            this.splitContainer2.Size = new System.Drawing.Size(1138, 551);
+            this.splitContainer2.SplitterDistance = 597;
             this.splitContainer2.TabIndex = 10;
             // 
             // dataGridSatellites
@@ -164,7 +172,7 @@ namespace CourseWork
             this.dataGridSatellites.ReadOnly = true;
             this.dataGridSatellites.RowHeadersWidth = 51;
             this.dataGridSatellites.RowTemplate.Height = 24;
-            this.dataGridSatellites.Size = new System.Drawing.Size(788, 550);
+            this.dataGridSatellites.Size = new System.Drawing.Size(597, 551);
             this.dataGridSatellites.TabIndex = 3;
             // 
             // splitContainer3
@@ -181,15 +189,15 @@ namespace CourseWork
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridMaintenance);
-            this.splitContainer3.Size = new System.Drawing.Size(793, 550);
-            this.splitContainer3.SplitterDistance = 253;
+            this.splitContainer3.Size = new System.Drawing.Size(537, 551);
+            this.splitContainer3.SplitterDistance = 380;
             this.splitContainer3.TabIndex = 0;
             // 
             // dataGridFailures
             // 
             this.dataGridFailures.AllowUserToAddRows = false;
             this.dataGridFailures.AllowUserToDeleteRows = false;
-            this.dataGridFailures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridFailures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridFailures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridFailures.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridFailures.Location = new System.Drawing.Point(0, 0);
@@ -197,14 +205,14 @@ namespace CourseWork
             this.dataGridFailures.ReadOnly = true;
             this.dataGridFailures.RowHeadersWidth = 51;
             this.dataGridFailures.RowTemplate.Height = 24;
-            this.dataGridFailures.Size = new System.Drawing.Size(793, 253);
+            this.dataGridFailures.Size = new System.Drawing.Size(537, 380);
             this.dataGridFailures.TabIndex = 4;
             // 
             // dataGridMaintenance
             // 
             this.dataGridMaintenance.AllowUserToAddRows = false;
             this.dataGridMaintenance.AllowUserToDeleteRows = false;
-            this.dataGridMaintenance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridMaintenance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridMaintenance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridMaintenance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridMaintenance.Location = new System.Drawing.Point(0, 0);
@@ -212,7 +220,7 @@ namespace CourseWork
             this.dataGridMaintenance.ReadOnly = true;
             this.dataGridMaintenance.RowHeadersWidth = 51;
             this.dataGridMaintenance.RowTemplate.Height = 24;
-            this.dataGridMaintenance.Size = new System.Drawing.Size(793, 293);
+            this.dataGridMaintenance.Size = new System.Drawing.Size(537, 167);
             this.dataGridMaintenance.TabIndex = 5;
             // 
             // toolStrip1
@@ -225,7 +233,7 @@ namespace CourseWork
             this.toolStripDropDownButton2});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1585, 54);
+            this.toolStrip1.Size = new System.Drawing.Size(1138, 54);
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -345,7 +353,7 @@ namespace CourseWork
             this.tabPage3.Controls.Add(this.splitContainer1);
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1591, 610);
+            this.tabPage3.Size = new System.Drawing.Size(1144, 611);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Штабы";
             // 
@@ -359,7 +367,7 @@ namespace CourseWork
             this.toolStripDropDownButton3});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1591, 54);
+            this.toolStrip2.Size = new System.Drawing.Size(1144, 54);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -489,8 +497,8 @@ namespace CourseWork
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer1.Size = new System.Drawing.Size(1584, 550);
-            this.splitContainer1.SplitterDistance = 420;
+            this.splitContainer1.Size = new System.Drawing.Size(1135, 550);
+            this.splitContainer1.SplitterDistance = 300;
             this.splitContainer1.TabIndex = 0;
             // 
             // dataGridHQ
@@ -505,7 +513,7 @@ namespace CourseWork
             this.dataGridHQ.ReadOnly = true;
             this.dataGridHQ.RowHeadersWidth = 51;
             this.dataGridHQ.RowTemplate.Height = 24;
-            this.dataGridHQ.Size = new System.Drawing.Size(420, 550);
+            this.dataGridHQ.Size = new System.Drawing.Size(300, 550);
             this.dataGridHQ.TabIndex = 1;
             // 
             // splitContainer4
@@ -522,7 +530,7 @@ namespace CourseWork
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.dataGridOpResources);
-            this.splitContainer4.Size = new System.Drawing.Size(1160, 550);
+            this.splitContainer4.Size = new System.Drawing.Size(831, 550);
             this.splitContainer4.SplitterDistance = 300;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -538,7 +546,7 @@ namespace CourseWork
             this.dataGridOperations.ReadOnly = true;
             this.dataGridOperations.RowHeadersWidth = 51;
             this.dataGridOperations.RowTemplate.Height = 24;
-            this.dataGridOperations.Size = new System.Drawing.Size(1160, 300);
+            this.dataGridOperations.Size = new System.Drawing.Size(831, 300);
             this.dataGridOperations.TabIndex = 0;
             // 
             // dataGridOpResources
@@ -553,7 +561,7 @@ namespace CourseWork
             this.dataGridOpResources.ReadOnly = true;
             this.dataGridOpResources.RowHeadersWidth = 51;
             this.dataGridOpResources.RowTemplate.Height = 24;
-            this.dataGridOpResources.Size = new System.Drawing.Size(1160, 246);
+            this.dataGridOpResources.Size = new System.Drawing.Size(831, 246);
             this.dataGridOpResources.TabIndex = 0;
             // 
             // tabPage4
@@ -563,9 +571,9 @@ namespace CourseWork
             this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1591, 610);
+            this.tabPage4.Size = new System.Drawing.Size(1144, 611);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Остальное";
+            this.tabPage4.Text = "Просмотр";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // dataGridDynamic
@@ -579,7 +587,7 @@ namespace CourseWork
             this.dataGridDynamic.Name = "dataGridDynamic";
             this.dataGridDynamic.ReadOnly = true;
             this.dataGridDynamic.RowHeadersWidth = 51;
-            this.dataGridDynamic.Size = new System.Drawing.Size(1585, 550);
+            this.dataGridDynamic.Size = new System.Drawing.Size(1138, 551);
             this.dataGridDynamic.TabIndex = 3;
             // 
             // toolStrip3
@@ -587,64 +595,103 @@ namespace CourseWork
             this.toolStrip3.AutoSize = false;
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dropdownOtherTables,
-            this.btnAddDynamic,
-            this.btnEditDynamic,
-            this.btnDeleteDynamic});
+            this.toolStripLabel1,
+            this.dropdownOtherTables});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1585, 54);
+            this.toolStrip3.Size = new System.Drawing.Size(1138, 54);
             this.toolStrip3.TabIndex = 2;
             this.toolStrip3.Text = "toolStrip3";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(197, 51);
+            this.toolStripLabel1.Text = "Выбранная таблица:";
             // 
             // dropdownOtherTables
             // 
             this.dropdownOtherTables.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dropdownOtherTables.Name = "dropdownOtherTables";
             this.dropdownOtherTables.Padding = new System.Windows.Forms.Padding(0, 0, 16, 0);
-            this.dropdownOtherTables.Size = new System.Drawing.Size(505, 54);
+            this.dropdownOtherTables.Size = new System.Drawing.Size(334, 54);
             // 
-            // btnAddDynamic
+            // tabPage1
             // 
-            this.btnAddDynamic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnAddDynamic.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAddDynamic.Image = ((System.Drawing.Image)(resources.GetObject("btnAddDynamic.Image")));
-            this.btnAddDynamic.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAddDynamic.Name = "btnAddDynamic";
-            this.btnAddDynamic.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnAddDynamic.Size = new System.Drawing.Size(134, 51);
-            this.btnAddDynamic.Text = "Добавить";
-            this.btnAddDynamic.Click += new System.EventHandler(this.BtnAddDynamic_Click);
+            this.tabPage1.Controls.Add(this.toolStrip4);
+            this.tabPage1.Controls.Add(this.dataGridReport);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1144, 611);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Отчеты";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btnEditDynamic
+            // toolStrip4
             // 
-            this.btnEditDynamic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnEditDynamic.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnEditDynamic.Image = ((System.Drawing.Image)(resources.GetObject("btnEditDynamic.Image")));
-            this.btnEditDynamic.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditDynamic.Name = "btnEditDynamic";
-            this.btnEditDynamic.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnEditDynamic.Size = new System.Drawing.Size(184, 51);
-            this.btnEditDynamic.Text = "Редактировать";
-            this.btnEditDynamic.Click += new System.EventHandler(this.BtnEditDynamic_Click);
+            this.toolStrip4.AutoSize = false;
+            this.toolStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.dropdownReportType,
+            this.toolStripButton1});
+            this.toolStrip4.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(1144, 54);
+            this.toolStrip4.TabIndex = 1;
+            this.toolStrip4.Text = "toolStrip4";
             // 
-            // btnDeleteDynamic
+            // toolStripLabel2
             // 
-            this.btnDeleteDynamic.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDeleteDynamic.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDeleteDynamic.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteDynamic.Image")));
-            this.btnDeleteDynamic.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteDynamic.Name = "btnDeleteDynamic";
-            this.btnDeleteDynamic.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
-            this.btnDeleteDynamic.Size = new System.Drawing.Size(120, 51);
-            this.btnDeleteDynamic.Text = "Удалить";
-            this.btnDeleteDynamic.Click += new System.EventHandler(this.BtnDeleteDynamic_Click);
+            this.toolStripLabel2.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(113, 51);
+            this.toolStripLabel2.Text = "Тип отчёта:";
+            // 
+            // dropdownReportType
+            // 
+            this.dropdownReportType.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dropdownReportType.Name = "dropdownReportType";
+            this.dropdownReportType.Padding = new System.Windows.Forms.Padding(0, 0, 16, 0);
+            this.dropdownReportType.Size = new System.Drawing.Size(334, 54);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
+            this.toolStripButton1.Size = new System.Drawing.Size(176, 54);
+            this.toolStripButton1.Text = "Создать отчёт";
+            this.toolStripButton1.Click += new System.EventHandler(this.BtnCreateReport_Click);
+            // 
+            // dataGridReport
+            // 
+            this.dataGridReport.AllowUserToAddRows = false;
+            this.dataGridReport.AllowUserToDeleteRows = false;
+            this.dataGridReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridReport.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReport.Location = new System.Drawing.Point(0, 57);
+            this.dataGridReport.Name = "dataGridReport";
+            this.dataGridReport.ReadOnly = true;
+            this.dataGridReport.RowHeadersWidth = 51;
+            this.dataGridReport.Size = new System.Drawing.Size(1144, 554);
+            this.dataGridReport.TabIndex = 0;
             // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1599, 654);
+            this.ClientSize = new System.Drawing.Size(1152, 655);
             this.Controls.Add(this.tabControlMain);
             this.Name = "Index";
             this.Text = "Спутниковая связь и космическая навигация";
@@ -681,6 +728,10 @@ namespace CourseWork
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDynamic)).EndInit();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.toolStrip4.ResumeLayout(false);
+            this.toolStrip4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -728,11 +779,15 @@ namespace CourseWork
         private ToolStripMenuItem btnEditOperation;
         private ToolStripMenuItem btnEditOpResources;
         private ToolStrip toolStrip3;
-        private ToolStripButton btnDeleteDynamic;
         private ToolStripComboBox dropdownOtherTables;
-        private ToolStripButton btnAddDynamic;
-        private ToolStripButton btnEditDynamic;
         private DataGridView dataGridDynamic;
+        private ToolStripLabel toolStripLabel1;
+        private TabPage tabPage1;
+        private DataGridView dataGridReport;
+        private ToolStrip toolStrip4;
+        private ToolStripComboBox dropdownReportType;
+        private ToolStripLabel toolStripLabel2;
+        private ToolStripButton toolStripButton1;
     }
 }
 

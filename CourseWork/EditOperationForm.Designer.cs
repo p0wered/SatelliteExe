@@ -46,16 +46,16 @@
             // 
             this.dropdownClient.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dropdownClient.FormattingEnabled = true;
-            this.dropdownClient.Location = new System.Drawing.Point(17, 287);
+            this.dropdownClient.Location = new System.Drawing.Point(18, 205);
             this.dropdownClient.Name = "dropdownClient";
-            this.dropdownClient.Size = new System.Drawing.Size(312, 37);
+            this.dropdownClient.Size = new System.Drawing.Size(247, 37);
             this.dropdownClient.TabIndex = 25;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 259);
+            this.label4.Location = new System.Drawing.Point(13, 177);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 25);
             this.label4.TabIndex = 24;
@@ -76,15 +76,15 @@
             this.dateTimePickerStart.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerStart.Location = new System.Drawing.Point(18, 122);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(312, 36);
+            this.dateTimePickerStart.Size = new System.Drawing.Size(247, 36);
             this.dateTimePickerStart.TabIndex = 22;
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(180, 427);
+            this.btnCancel.Location = new System.Drawing.Point(281, 275);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 56);
+            this.btnCancel.Size = new System.Drawing.Size(247, 56);
             this.btnCancel.TabIndex = 21;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // btnOK
             // 
             this.btnOK.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnOK.Location = new System.Drawing.Point(18, 427);
+            this.btnOK.Location = new System.Drawing.Point(18, 275);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(150, 56);
+            this.btnOK.Size = new System.Drawing.Size(247, 56);
             this.btnOK.TabIndex = 20;
             this.btnOK.Text = "ОК";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.textBoxName.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxName.Location = new System.Drawing.Point(18, 38);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(312, 36);
+            this.textBoxName.Size = new System.Drawing.Size(510, 36);
             this.textBoxName.TabIndex = 19;
             // 
             // Название
@@ -122,7 +122,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(13, 175);
+            this.label1.Location = new System.Drawing.Point(276, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 25);
             this.label1.TabIndex = 27;
@@ -131,25 +131,25 @@
             // dateTimePickerEnd
             // 
             this.dateTimePickerEnd.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(18, 203);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(281, 122);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(312, 36);
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(247, 36);
             this.dateTimePickerEnd.TabIndex = 26;
             // 
             // dropdownStatus
             // 
             this.dropdownStatus.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dropdownStatus.FormattingEnabled = true;
-            this.dropdownStatus.Location = new System.Drawing.Point(18, 368);
+            this.dropdownStatus.Location = new System.Drawing.Point(281, 205);
             this.dropdownStatus.Name = "dropdownStatus";
-            this.dropdownStatus.Size = new System.Drawing.Size(312, 37);
+            this.dropdownStatus.Size = new System.Drawing.Size(247, 37);
             this.dropdownStatus.TabIndex = 29;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Aptos", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(13, 340);
+            this.label3.Location = new System.Drawing.Point(276, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 25);
             this.label3.TabIndex = 28;
@@ -159,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 506);
+            this.ClientSize = new System.Drawing.Size(546, 350);
             this.Controls.Add(this.dropdownStatus);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -173,7 +173,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.Название);
             this.Name = "EditOperationForm";
-            this.Text = "EditOperationForm";
+            this.Text = "Редактирование операции";
             this.ResumeLayout(false);
             this.PerformLayout();
 

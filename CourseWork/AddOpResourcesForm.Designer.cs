@@ -106,7 +106,7 @@
             this.Controls.Add(this.dropdownResource);
             this.Controls.Add(this.label1);
             this.Name = "AddOpResourcesForm";
-            this.Text = "AddOpResourcesForm";
+            this.Text = "Добавление ресурса к операции";
             ((System.ComponentModel.ISupportInitialize)(this.numericQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

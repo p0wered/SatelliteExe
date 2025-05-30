@@ -93,7 +93,7 @@
             // 
             this.datePickerService.Font = new System.Drawing.Font("Aptos", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.datePickerService.Location = new System.Drawing.Point(20, 40);
-            this.datePickerService.MinDate = new System.DateTime(2025, 5, 25, 0, 0, 0, 0);
+            this.datePickerService.MinDate = new System.DateTime(2000, 11, 17, 0, 0, 0, 0);
             this.datePickerService.Name = "datePickerService";
             this.datePickerService.Size = new System.Drawing.Size(363, 36);
             this.datePickerService.TabIndex = 9;
@@ -131,7 +131,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.datePickerService);
             this.Name = "EditMaintenanceForm";
-            this.Text = "EditMaintenanceForm";
+            this.Text = "Редактирования ТО";
             this.ResumeLayout(false);
             this.PerformLayout();
 

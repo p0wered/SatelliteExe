@@ -128,7 +128,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.Название);
             this.Name = "AddOperationForm";
-            this.Text = "AddOperationForm";
+            this.Text = "Добавление операции";
             this.ResumeLayout(false);
             this.PerformLayout();
 

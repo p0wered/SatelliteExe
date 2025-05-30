@@ -128,7 +128,7 @@
             this.Controls.Add(this.textBoxID);
             this.Controls.Add(this.label1);
             this.Name = "EditHQForm";
-            this.Text = "EditHQForm";
+            this.Text = "Редактирование штаба";
             this.ResumeLayout(false);
             this.PerformLayout();
 

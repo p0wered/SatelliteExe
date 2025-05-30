@@ -25,10 +25,6 @@ namespace CourseWork
 
         private void AddSatelliteForm_Load(object sender, EventArgs e)
         {
-            FillCombo("SELECT Идентификатор_орбиты, Тип_орбиты FROM Орбиты", dropdownOrbitSelect,
-                      "Тип_орбиты", "Идентификатор_орбиты");
-            FillCombo("SELECT Номер_станции, Название FROM Наземные_станции", dropdownStationSelect,
-                      "Название", "Номер_станции");
             FillCombo("SELECT Номер_операции, Название FROM Операции", dropdownSelectOperation,
                       "Название", "Номер_операции");
             FillCombo("SELECT Название FROM Клиентские_компании", dropdownSelectClient,
@@ -51,15 +47,24 @@ namespace CourseWork
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxSatelliteName.Text)
-                || !int.TryParse(textBoxSatelliteLife.Text, out int lifetime)
-                || dropdownOrbitSelect.SelectedIndex < 0
-                || dropdownStationSelect.SelectedIndex < 0
-                || dropdownSelectOperation.SelectedIndex < 0
-                || dropdownSelectClient.SelectedIndex < 0)
+            if (!int.TryParse(textBoxSatelliteLife.Text, out int lifetime))
             {
-                MessageBox.Show("Заполните все поля корректно.",
-                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Некорректный срок службы", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBoxSatelliteName.Text))
+            {
+                MessageBox.Show("Введите название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dropdownSelectOperation.SelectedIndex < 0)
+            {
+                MessageBox.Show("Выберите операцию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dropdownSelectClient.SelectedIndex < 0)
+            {
+                MessageBox.Show("Выберите клиентскую компанию", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -69,9 +74,7 @@ namespace CourseWork
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Name", textBoxSatelliteName.Text.Trim());
                 cmd.Parameters.AddWithValue("@Lifetime", lifetime);
-                cmd.Parameters.AddWithValue("@OrbitId", (int)dropdownOrbitSelect.SelectedValue);
                 cmd.Parameters.AddWithValue("@OperationId", (int)dropdownSelectOperation.SelectedValue);
-                cmd.Parameters.AddWithValue("@StationId", (int)dropdownStationSelect.SelectedValue);
                 cmd.Parameters.AddWithValue("@Client", dropdownSelectClient.SelectedValue.ToString());
 
                 conn.Open();

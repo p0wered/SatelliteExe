@@ -8,6 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace CourseWork
 {
@@ -31,47 +36,56 @@ namespace CourseWork
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxID.Text))
+            var hqId = textBoxID.Text.Trim();
+            if (string.IsNullOrEmpty(hqId))
             {
-                MessageBox.Show("Введите идентификатор штаба.",
-                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введите идентификатор штаба.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (!int.TryParse(textBoxStaffCount.Text, out int staffCount))
+
+            if (!int.TryParse(textBoxStaffCount.Text, out int staffCount) || staffCount <= 0)
             {
-                MessageBox.Show("Введите корректное число сотрудников.",
-                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введите корректное положительное число сотрудников.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (dropdownSecurity.SelectedIndex < 0)
             {
-                MessageBox.Show("Выберите уровень безопасности.",
-                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Выберите уровень безопасности.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            var security = dropdownSecurity.SelectedItem.ToString();
 
-            string hqId = textBoxID.Text.Trim();
-            string security = dropdownSecurity.SelectedItem.ToString();
-
-            using (var conn = new SqlConnection(_connString))
-            using (var cmd = new SqlCommand("usp_AddHQ", conn))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@HQId", hqId);
-                cmd.Parameters.AddWithValue("@StaffCount", staffCount);
-                cmd.Parameters.AddWithValue("@SecurityLevel", security);
+                using (var conn = new SqlConnection(_connString))
+                using (var cmd = new SqlCommand("usp_AddHQ", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@HQId", hqId);
+                    cmd.Parameters.AddWithValue("@StaffCount", staffCount);
+                    cmd.Parameters.AddWithValue("@SecurityLevel", security);
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                DialogResult = DialogResult.OK;
             }
-
-            DialogResult = DialogResult.OK;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("правилом"))
+                {
+                    MessageBox.Show("Нарушено правило формата кода штаба. Используйте шаблон A123-4.",
+                                    "Ошибка формата", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при добавлении штаба:\n" + ex.Message,
+                                    "Ошибка БД", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
+

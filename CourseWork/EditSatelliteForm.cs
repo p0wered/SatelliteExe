@@ -36,7 +36,7 @@ namespace CourseWork
                       dropdownSelectClient, "Название", "Название");
 
             dropdownStatus.Items.AddRange(new[] {
-                "На хранении", "Активен", "Выполняется", "Выведен"
+                "На хранении", "Запланирован", "Активен", "Выведен"
             });
 
             LoadSatelliteData();
@@ -60,20 +60,29 @@ namespace CourseWork
             textBoxSatelliteName.Text = r.Field<string>("Название");
             textBoxSatelliteLife.Text = r.Field<int>("Срок_службы").ToString();
             dropdownStatus.SelectedItem = r.Field<string>("Статус");
-            dropdownOrbitSelect.SelectedValue = r.Field<int>("Идентификатор_орбиты");
+            if (!r.IsNull("Идентификатор_орбиты"))
+                dropdownOrbitSelect.SelectedValue = r.Field<int>("Идентификатор_орбиты");
+            else
+                dropdownOrbitSelect.SelectedIndex = -1;
             dropdownSelectOperation.SelectedValue = r.Field<int>("Номер_операции");
-            dropdownStationSelect.SelectedValue = r.Field<int>("Станция_вылета");
+            if (!r.IsNull("Станция_вылета"))
+                dropdownStationSelect.SelectedValue = r.Field<int>("Станция_вылета");
+            else
+                dropdownStationSelect.SelectedIndex = -1;
             dropdownSelectClient.SelectedValue = r.Field<string>("Клиент");
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxSatelliteName.Text)
-                || !int.TryParse(textBoxSatelliteLife.Text, out int lifetime)
-                || dropdownOrbitSelect.SelectedIndex < 0
-                || dropdownStationSelect.SelectedIndex < 0
-                || dropdownSelectOperation.SelectedIndex < 0
-                || dropdownSelectClient.SelectedIndex < 0
+            if (!int.TryParse(textBoxSatelliteLife.Text, out int lifetime))
+            {
+                MessageBox.Show("Некорректный срок службы", "Ошибка",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(textBoxSatelliteName.Text) 
+                || dropdownSelectOperation.SelectedIndex < 0 
+                || dropdownSelectClient.SelectedIndex < 0 
                 || dropdownStatus.SelectedIndex < 0)
             {
                 MessageBox.Show("Заполните все поля.", "Ошибка",
@@ -89,9 +98,15 @@ namespace CourseWork
                 cmd.Parameters.AddWithValue("@Name", textBoxSatelliteName.Text.Trim());
                 cmd.Parameters.AddWithValue("@Status", dropdownStatus.SelectedItem.ToString());
                 cmd.Parameters.AddWithValue("@Lifetime", lifetime);
-                cmd.Parameters.AddWithValue("@OrbitId", (int)dropdownOrbitSelect.SelectedValue);
+                cmd.Parameters.AddWithValue("@OrbitId",
+                    dropdownOrbitSelect.SelectedIndex >= 0
+                        ? (object)dropdownOrbitSelect.SelectedValue
+                        : DBNull.Value);
                 cmd.Parameters.AddWithValue("@OperationId", (int)dropdownSelectOperation.SelectedValue);
-                cmd.Parameters.AddWithValue("@StationId", (int)dropdownStationSelect.SelectedValue);
+                cmd.Parameters.AddWithValue("@StationId",
+                    dropdownStationSelect.SelectedIndex >= 0
+                        ? (object)dropdownStationSelect.SelectedValue
+                        : DBNull.Value);
                 cmd.Parameters.AddWithValue("@Client", dropdownSelectClient.SelectedValue.ToString());
 
                 conn.Open();

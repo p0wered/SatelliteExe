@@ -24,7 +24,11 @@ namespace CourseWork
             "Клиентские_компании",
             "Космические_компании",
             "Бригады_специалистов",
-            "Наземные_станции"
+            "Наземные_станции",
+            "Операции",
+            "Спутники",
+            "Сбои",
+            "Технические_обслуживания"
         };
 
         public Index()
@@ -53,6 +57,10 @@ namespace CourseWork
             {
                 InitOtherTab();
             }
+            else if (tabControlMain.SelectedIndex == 3)
+            {
+                InitReportTab();
+            }   
         }
 
         // Вкладка "Спутники"
@@ -175,8 +183,7 @@ namespace CourseWork
         {
             if (dataGridFailures.CurrentRow == null)
             {
-                MessageBox.Show("Сначала выберите сбой.", "Ошибка",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Сначала выберите сбой.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -217,7 +224,10 @@ namespace CourseWork
         private void btnDeleteMaintenance_Click(object sender, EventArgs e)
         {
             if (dataGridMaintenance.CurrentRow == null)
+            {
+                MessageBox.Show("Сначала выберите ТО.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
 
             int maintenanceId = Convert.ToInt32(
                 dataGridMaintenance.CurrentRow.Cells["Номер ТО"].Value);
@@ -246,7 +256,10 @@ namespace CourseWork
         private void btnDeleteFailure_Click(object sender, EventArgs e)
         {
             if (dataGridFailures.CurrentRow == null)
+            {
+                MessageBox.Show("Сначала выберите сбой.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
 
             int failureId = Convert.ToInt32(
                 dataGridFailures.CurrentRow.Cells["Номер_сбоя"].Value);
@@ -556,97 +569,54 @@ namespace CourseWork
             dataGridDynamic.DataSource = dt;
         }
 
-        private void BtnAddDynamic_Click(object sender, EventArgs e)
+        // Вкладка "Отчет"
+        private void InitReportTab()
         {
-            string table = dropdownOtherTables.SelectedItem as string;
-            if (string.IsNullOrEmpty(table))
-                return;
-
-            Form form = null;
-
-            switch (table)
+            if (dropdownReportType.Items.Count == 0)
             {
-                case "Орбиты":
-                    form = new AddOrbitsForm(connString);
-                    break;
-                case "Ресурсы":
-                    form = new AddResourcesForm(connString);
-                    break;
-                case "Клиентские_компании":
-                    form = new AddClientCompanyForm(connString);
-                    break;
-                case "Космические_компании":
-                    form = new AddSpaceCompanyForm(connString);
-                    break;
-                case "Бригады_специалистов":
-                    form = new AddBrigadeForm(connString);
-                    break;
-                case "Наземные_станции":
-                    form = new AddGroundStationForm(connString);
-                    break;
+                dropdownReportType.Items.AddRange(new object[]
+                {
+                    "Активные операции",
+                    "Спутники по орбитам",
+                    "Клиенты и количество спутников"
+                });
             }
-
-            if (form != null && form.ShowDialog() == DialogResult.OK)
-                LoadDynamicTable();
+            dropdownReportType.SelectedIndex = 0;
+            dataGridReport.AutoGenerateColumns = true;
         }
 
-        private void BtnEditDynamic_Click(object sender, EventArgs e)
+        private void BtnCreateReport_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void BtnDeleteDynamic_Click(object sender, EventArgs e)
-        {
-            string table = dropdownOtherTables.SelectedItem as string;
-            if (string.IsNullOrEmpty(table) || dataGridDynamic.CurrentRow == null)
-                return;
-
-            object key = dataGridDynamic.CurrentRow.Cells[0].Value;
-            string msg = $"Удалить запись в таблице {table} с ключом = {key}?";
-            if (MessageBox.Show(msg, "Подтверждение",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                return;
-
-            string sql = null;
-            switch (table)
+            if (dropdownReportType.SelectedIndex < 0)
             {
-                case "Орбиты":
-                    sql = "DELETE FROM Орбиты WHERE Идентификатор_орбиты = @id";
-                    break;
-                case "Ресурсы":
-                    sql = "DELETE FROM Ресурсы WHERE ID = @id";
-                    break;
-                case "Клиентские_компании":
-                    sql = "DELETE FROM Клиентские_компании WHERE Название = @id";
-                    break;
-                case "Космические_компании":
-                    sql = "DELETE FROM Космические_компании WHERE Название = @id";
-                    break;
-                case "Бригады_специалистов":
-                    sql = "DELETE FROM Бригады_специалистов WHERE Номер_бригады = @id";
-                    break;
-                case "Наземные_станции":
-                    sql = "DELETE FROM Наземные_станции WHERE Номер_станции = @id";
-                    break;
-                case "Сбои":
-                    sql = "DELETE FROM Сбои WHERE Номер_сбоя = @id";
-                    break;
-                case "Технические_обслуживания":
-                    sql = "DELETE FROM Технические_обслуживания WHERE Номер_ТО = @id";
-                    break;
+                MessageBox.Show("Выберите тип отчёта.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            if (sql == null) return;
+            string viewName;
+            switch (dropdownReportType.SelectedIndex)
+            {
+                case 0:
+                    viewName = "View_ActiveOperations";
+                    break;
+                case 1:
+                    viewName = "View_SatellitesByOrbit";
+                    break;
+                case 2:
+                    viewName = "View_ClientsSatelliteCount";
+                    break;
+                default:
+                    throw new InvalidOperationException("Неподдерживаемый тип отчёта");
+            }
 
+            var dt = new DataTable();
             using (var conn = new SqlConnection(connString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (var da = new SqlDataAdapter($"SELECT * FROM {viewName}", conn))
             {
-                cmd.Parameters.AddWithValue("@id", key);
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                da.Fill(dt);
             }
 
-            LoadDynamicTable();
+            dataGridReport.DataSource = dt;
         }
 
         // Утилиты

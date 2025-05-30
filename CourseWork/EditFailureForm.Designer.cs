@@ -130,7 +130,7 @@
             this.Controls.Add(this.datePickerFailure);
             this.Controls.Add(this.label1);
             this.Name = "EditFailureForm";
-            this.Text = "EditFailureForm";
+            this.Text = "Редактирование сбоя";
             this.ResumeLayout(false);
             this.PerformLayout();
 
